@@ -1,11 +1,7 @@
 # Online-Shopping-Project
 Group project for the UCD module COMP30220 Distributed Systems
 
-This version of the project has not been dockerised yet.
-
-View the docker branch to run the dockerised project.
-
-To run without Docker, enter the project root and do the following:
+To run, enter the project root and do the following:
 1. mvn clean compile
 2. mvn install
 3. mvn spring-boot:run -pl eureka
