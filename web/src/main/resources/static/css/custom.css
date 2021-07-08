@@ -1,0 +1,10 @@
+#and custom CSS
+
+.masthead {
+            height: 20vh;
+            min-height: 200px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/383px-Flag_of_Sweden.svg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+}

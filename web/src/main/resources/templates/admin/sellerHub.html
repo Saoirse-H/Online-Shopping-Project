@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div th:replace="common/head.html"></div>
+
+    <body>
+
+    <div th:replace="common/nav.html"></div>
+
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="font-weight-light">Yeet Shop Swedish</h1>
+                    <p class="lead">We aren't Swedish, but we have sweet-ish deals!</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+        <span th:if="${items != null}"></span>
+            <table class="table table-hover">
+                <p style="font-size: x-large;">Your Stock</p>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th class = "text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${items}">
+                        <td th:text="${item.name}"></td>
+                        <td th:text="${item.category}"></td>
+                        <td th:text="${item.description}"></td>
+                        <td th:text="${item.quantity}"></td>
+                        <td th:text="'€' + ${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></td>
+                        <td><a class ="btn btn-small btn-outline-danger" th:href="@{/remove(id=${item.itemId})}" role="button">Remove Stock</a></td>
+                    </tr>
+                    <tr>
+                        <form method="POST" action="/add">
+                            <td>
+                                <label for="name">Item Name:<br></label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </td> 
+                            <td>
+                                <label for="category">Category:<br></label>
+                                <select id="category" name="category" class="form-control">
+                                    <option value="Coats">Coats</option>
+                                    <option value="Hats">Hats</option>
+                                    <option value="Shoes">Shoes</option>
+                                    <option value="Socks">Socks</option>                               
+                                </select>
+                            </td>
+                            <td>
+                                <label for="description">Description:<br></label>
+                                <input type="text" id="description" name="description" class="form-control">
+                            </td>
+                            <td>
+                                <label for="quantity">Quantity:<br></label>
+                                <input type="text" id="quantity" name="quantity" class="form-control" required>
+                            </td>
+                            <td>
+                                <label for="price">Price:<br></label>
+                                <input type="text" id="price" name="price" class="form-control" required>
+                            </td>
+                            <td><button class ="btn btn-small btn-outline-success" type="submit">Add New Stock</button></td>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+        </span>
+        <span th:if="${items == null}">
+            <p>You have no stock added.</p>
+        </span>
+    </div>
+    <div class="col-lg-12 col-md-18 mb-12">
+        <div class="card">
+            <div class="card-body btn-outline-danger">
+                <h4 class="card-title">
+                    <a href="logout" class="stretched-link btn-outline-danger" style="padding-left: 45%">Logout</a>
+                </h4>
+                <p class="card-text" style="padding-left: 46%">Logout</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div th:replace="common/head.html"></div>
+
+    <body>
+
+    <div th:replace="common/nav.html"></div>
+
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="font-weight-light">Yeet Shop Swedish</h1>
+                    <p class="lead">We aren't Swedish, but we have sweet-ish deals!</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+        <!-- placeholder code for reading into a table with your cart info.
+        I'm not sure of the structure of the data, but it's very simple to adapt this-->
+        <span th:if="${items != null}"></span>
+            <table class="table table-hover">
+                <p style="font-size: x-large;">Your Orders!</p>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${items}">
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.quantity}"></td>
+                    <td th:text="'€' + ${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></td>
+                    <td></tf><a class ="btn btn-small btn-danger" th:href="@{/remove-from-cart-button(itemId=${item.itemId})}"role="button">Remove</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </span>
+        <span th:if="${items == null}">
+            <p>Your cart is empty</p>
+        </span>
+    </div>
+
+</body>
+</html>
